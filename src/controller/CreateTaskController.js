@@ -7,14 +7,14 @@ module.exports = {
         try {
 
 
-            let { id, description, completed } = req.body;
-
-            if (!id) {
-                id = uuid()
+            const { description } = req.body;
+            const completed = false;
+            
+            if(!description){
+                res.status(400).json({error:"must contain an description"})
             }
-            if (!completed) {
-                completed = false
-            }
+            const id = uuid()
+        
             const created_at = new Date()
             const updated_at = new Date()
 
