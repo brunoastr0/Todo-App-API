@@ -9,6 +9,7 @@ class Task extends Model {
                 primaryKey: true
             },
             description: DataTypes.STRING,
+            completed: DataTypes.BOOLEAN,
             created_at: DataTypes.DATE,
             updated_at: DataTypes.DATE,
 
