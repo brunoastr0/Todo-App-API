@@ -5,16 +5,14 @@ module.exports = {
     async createTask(req, res) {
 
         try {
-
-
             const { description } = req.body;
             const completed = false;
-            
-            if(!description){
-                res.status(400).json({error:"must contain an description"})
+
+            if (!description) {
+                res.status(400).json({ error: "must contain an description" })
             }
             const id = uuid()
-        
+
             const created_at = new Date()
             const updated_at = new Date()
 

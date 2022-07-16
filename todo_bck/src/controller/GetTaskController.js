@@ -18,8 +18,8 @@ module.exports = {
         try {
 
             const { id } = req.params
-            const task = await Task.findOne({where:{id:id}})
-            if(task === null){
+            const task = await Task.findOne({ where: { id: id } })
+            if (task === null) {
                 res.status(404).json({ error: `task not found with id ${id}` });
             }
             res.status(200).json(task)
