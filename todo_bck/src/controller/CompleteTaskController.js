@@ -25,7 +25,7 @@ module.exports = {
             return res.status(200).json({success: `Task set to completed, task_id:${id}`})
         }
         catch (err) {
-            console.error(err)
+            console.error(err) 
         }
 
     }

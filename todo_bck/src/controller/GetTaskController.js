@@ -5,7 +5,13 @@ module.exports = {
     async getAllTasks(req, res) {
 
         try {
-            const task = await Task.findAll()
+            const task = await Task.findAll(
+                {
+                    order: [
+
+                        ['createdAt', 'DESC']
+                    ]
+                })
             return res.status(201).json(task)
         }
         catch (err) {
