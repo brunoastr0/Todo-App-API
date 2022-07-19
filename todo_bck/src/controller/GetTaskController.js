@@ -1,5 +1,7 @@
 const { uuid } = require("uuidv4");
 const Task = require('../model/Task')
+const ApiError = require('../error/ApiError')
+
 
 module.exports = {
     async getAllTasks(req, res) {
@@ -15,22 +17,22 @@ module.exports = {
             return res.status(201).json(task)
         }
         catch (err) {
-            console.error(err)
+            next(err)
         }
 
     },
 
-    async getOneTask(req, res) {
+    async getOneTask(req, res, next) {
         try {
 
             const { id } = req.params
             const task = await Task.findOne({ where: { id: id } })
             if (task === null) {
-                res.status(404).json({ error: `task not found with id ${id}` });
-            }
+                next(ApiError.notFound(`Did not find any task with id: ${id}`))
+                return;             }
             res.status(200).json(task)
         } catch (err) {
-            console.error(err)
+            next(err)
         }
 
     }

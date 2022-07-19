@@ -1,20 +1,21 @@
 const Task = require('../model/Task')
+const ApiError = require('../error/ApiError')
 
 module.exports = {
-    async editTask(req, res) {
+    async editTask(req, res, next) {
 
         try {
 
             const { id } = req.params
             const taskExists = await Task.findOne({ where: { id: id } })
             if (taskExists === null) {
-                res.status(404).json({ error: `task not found with id ${id}` });
-            }
+                next(ApiError.notFound(`Did not find any task with id: ${id}`))
+                return;            }
 
             const { description } = req.body;
-            if (!description) {
-                res.status(400).json({ error: "must contain an description" })
-
+            if (!description || description.trim().length === 0) {
+                next(ApiError.badRequest(`description field is required, should not be empty`))
+                return;
             }
             const updated_at = new Date()
 
@@ -30,10 +31,10 @@ module.exports = {
                     })
 
 
-            return res.status(200).json(task)
+            return res.status(200).json(task).send({ success:"task edited"})
         }
         catch (err) {
-            console.error(err)
+           next(err)
         }
 
     }

@@ -1,15 +1,18 @@
 const { v4: uuid } = require("uuid");
 const Task = require('../model/Task')
+const ApiError = require('../error/ApiError')
 
 module.exports = {
-    async createTask(req, res) {
+    async createTask(req, res, next) {
 
         try {
             const { description } = req.body;
             const completed = false;
 
-            if (!description) {
-                res.status(400).json({ error: "must contain an description" })
+            if (!description || description.trim().length === 0) {
+
+                next(ApiError.badRequest(`description field is required, should not be empty`))
+                return;
             }
             const id = uuid()
 
@@ -19,10 +22,10 @@ module.exports = {
             const task = await Task.create({ id, description, completed, created_at, updated_at })
 
 
-            return res.status(201).json(task)
+            return res.status(201).send({message: "Task created succesfully"})
         }
         catch (err) {
-            console.error(err)
+            next(err)
         }
 
     }
