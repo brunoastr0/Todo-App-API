@@ -15,10 +15,11 @@ class Task extends Model {
                 references: {
                     model: "List",
                     key: "id"
-                },
-                created_at: DataTypes.DATE,
-                updated_at: DataTypes.DATE
-            }
+                }
+            },
+            created_at: DataTypes.DATE,
+            updated_at: DataTypes.DATE
+
 
 
         }, { sequelize, tableName: "task" })
