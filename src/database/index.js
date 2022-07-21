@@ -9,4 +9,7 @@ const connection = new Sequelize(dbConfig)
 List.init(connection)
 Task.init(connection)
 
+// List.hasMany(Task)
+// Task.belongsTo(List)
+
 module.exports = connection

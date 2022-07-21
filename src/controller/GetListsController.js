@@ -1,18 +1,18 @@
-
+const List = require('../model/List');
 
 module.exports={
-    async getList(req, res, next){
+    async getAllLists(req, res, next){
 
         try{
          
-                const task = await Task.findAll(
+                const list = await List.findAll(
                     {
                         order: [
     
                             ['createdAt', 'DESC']
                         ]
                     })
-                return res.status(201).json(task)
+                return res.status(201).json(list)
 
         }catch(error){
             next(error)
