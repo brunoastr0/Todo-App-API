@@ -1,6 +1,6 @@
 const ApiError = require('./ApiError');
 
-function apiErrorHandler(err, req, res, next) { //four params in a middleware->error handler middleware in express
+function apiErrorHandler(err, req, res, next) { //4 params in a middleware->error handler middleware in express
     console.error(err)// only in dev; is not async
 
     if (err instanceof ApiError) {
