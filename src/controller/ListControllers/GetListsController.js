@@ -1,4 +1,4 @@
-const List = require('../model/List');
+const List = require('../../model/List');
 
 module.exports={
     async getAllLists(req, res, next){

@@ -1,6 +1,6 @@
-const ApiError = require('../error/ApiError')
+const ApiError = require('../../error/ApiError')
 const { v4: uuid } = require("uuid");
-const List = require('../model/List')
+const List = require('../../model/List')
 
 
 module.exports = {

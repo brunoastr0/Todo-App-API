@@ -7,4 +7,4 @@ list.post('/api/list', createListController.createList)
 list.get('/api/list', getListController.getAllLists)
 
 
-module.exports = list
+module.exports = list 
