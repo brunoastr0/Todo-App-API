@@ -31,7 +31,7 @@ module.exports = {
                     })
 
 
-            return res.status(200).json(task).send({ success:"task edited"})
+            return res.status(200).send({ success:"task edited"})
         }
         catch (err) {
            next(err)
