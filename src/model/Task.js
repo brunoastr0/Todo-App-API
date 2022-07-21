@@ -10,13 +10,7 @@ class Task extends Model {
             },
             description: DataTypes.STRING,
             completed: DataTypes.BOOLEAN,
-            listId: {
-                type: DataTypes.STRING,
-                references: {
-                    model: "List",
-                    key: "id"
-                }
-            },
+          
             created_at: DataTypes.DATE,
             updated_at: DataTypes.DATE
 
